@@ -41,7 +41,6 @@ class Home extends Component {
         // }
       })
     ]).then(response => {
-      //   console.log(response[0].data.data);
       const taxidriverlist = response[0].data.data.map(taxi => ({
         ...taxi
       }));
