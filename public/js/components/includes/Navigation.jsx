@@ -24,7 +24,7 @@ export default class Navigation extends React.Component {
       : "";
     const navClass = collapsed ? "collapse" : "";
     return (
-      <div className="navbar navbar-default navbar-fixed-top">
+      <div className="navbars navbar-default navbar-fixed-top">
         <div className="container">
           <div className="navbar-header">
             <a href="/" className="navbar-brand">
