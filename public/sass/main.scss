@@ -5,7 +5,7 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   color: #4d4d4d;
-  height: 100%;
+  height: 91%;
 }
 
 .main {
@@ -38,12 +38,13 @@ body {
 }
 .leaflet-popup-content {
   width: 300px !important;
+  height: 165px;
   overflow: auto;
   margin: 0;
   padding: 0.25rem 0.6125rem;
 }
 
-.bind-header {
+div .bind-header {
   font-size: 15px;
   color: #ffffff;
   text-transform: capitalize;
@@ -78,9 +79,28 @@ body {
   left: 50%;
   z-index: 99999;
 }
+.btn-danger {
+  margin-top: 1px;
+}
 
 .MuiSlider-root {
   width: 97%;
   height: 5px;
   left: 27px;
+}
+
+.form-custom {
+  width: 25%;
+  margin: 0 auto;
+  border: 2px solid #ff00000f;
+  padding: 32px;
+}
+.custom-card {
+  border: red 2px solid;
+  position: absolute;
+  z-index: 99999999;
+  background: navajowhite;
+}
+.custom-top {
+  border-bottom: 2px solid red;
 }

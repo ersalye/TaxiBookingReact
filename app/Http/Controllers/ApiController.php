@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterAuthRequest;
+use App\Http\Requests\RegisterDriverAuthRequest;
 use App\User;
+use App\Booking;
 use Illuminate\Http\Request;
 use App\TaxiDriver;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
+use DB;
 class ApiController extends Controller
 {
     public $loginAfterSignUp = true;
@@ -18,7 +20,10 @@ class ApiController extends Controller
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->user_type = 1;
+        $user->phoneno = $request->phoneno;
         $user->password = bcrypt($request->password);
+
         $user->save();
 
         if ($this->loginAfterSignUp) {
@@ -30,12 +35,39 @@ class ApiController extends Controller
             'data' => $user
         ], 200);
     }
+    public function registerdriver(RegisterAuthRequest $request)
+    {
+        $driver_user = new User();
+        $driver_user->name = $request->name;
+        $driver_user->email = $request->email;
+        $driver_user->password = bcrypt($request->password);
+        $driver_user->user_type = 2;
+        $driver_user->phoneno = $request->phoneno;
+        $driver_user->license_number = $request->license_number;
+        $driver_user->taxi_number = $request->taxi_number;
+        $driver_user->latitude = $request->latitude;
+        $driver_user->longitude = $request->longitude;
+        
+        $driver_user->save();
+
+        if ($this->loginAfterSignUp) {
+            return $this->login($request);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $driver_user
+        ], 200);
+        
+    }
 
     public function login(Request $request)
     {
         $input = $request->only('email', 'password');
         $jwt_token = null;
-
+// $userid=User::select('*')->where('user_type','=','2')->get();
+        $userid= User::select('id','user_type')->where('email','=',$request->get('email'))->first();
+        // dd($userid['id']);
         if (!$jwt_token = JWTAuth::attempt($input)) {
             return response()->json([
                 'success' => false,
@@ -45,7 +77,10 @@ class ApiController extends Controller
 
         return response()->json([
             'success' => true,
+            'userid'=>$userid['id'],
+            'usertype'=>$userid['user_type'],
             'token' => $jwt_token,
+            
         ]);
     }
 
@@ -102,7 +137,7 @@ class ApiController extends Controller
     }
     public function taxidriverlist(){
         
-        $list = TaxiDriver::select('*')->get();
+        $list = User::select('*')->where('user_type','=','2')->get();
         
 
         return response()->json([
@@ -123,8 +158,8 @@ class ApiController extends Controller
     // }
     public function deletetaxidriver($id)
     {
-        $todeletedriver = TaxiDriver::select('*')->where('id','=',$id)->first();
-        $list = TaxiDriver::select('*')->get();
+        $todeletedriver = User::select('*')->where('id','=',$id)->first();
+        $list = User::select('*')->where('user_type','=','2')->get();
 
         if (!$todeletedriver) {
             return response()->json([
@@ -146,7 +181,7 @@ class ApiController extends Controller
         }
     }
     public function taxidriverdetail($id){
-        $toshowdriver = TaxiDriver::select('*')->where('id','=',$id)->first();
+        $toshowdriver = User::select('*')->where('id','=',$id)->where('user_type','=','2')->first();
         if (!$toshowdriver) {
             return response()->json([
                 'success' => false,
@@ -159,5 +194,54 @@ class ApiController extends Controller
                 'data' => $toshowdriver
             ], 200);
         }
+    }
+
+    public function booking(Request $request){
+        $usertype= $request->get('user_type');
+        $userid= $request->get('user_id');
+        $taxiid= $request->get('taxi_id');
+        // dd($usertype);
+
+        $booking = new Booking();
+        $booking->driver_id = $taxiid;
+        $booking->user_id = $userid;
+        $booking->type = $usertype;
+        $booking->save();
+        return response()->json([
+            'success' => true,
+            'data' => $booking
+        ], 200);
+    }
+    public function getbooking($id){
+        // dd($usertype);
+        // dd('sds');
+        $users = DB::table('users')
+            ->join('booking', 'booking.driver_id', '=', 'users.id')
+            ->select('booking.*', 'users.id as userid','users.name','users.phoneno','users.taxi_number')
+            ->where('booking.user_id','=',$id)
+            ->get();
+        // dd($users);
+       
+
+        return response()->json([
+            'success' => true,
+            'data' => $users
+        ], 200);
+    }
+    public function getdriverbooking($id){
+        // dd($usertype);
+        // dd('sds');
+        $users = DB::table('users')
+            ->join('booking', 'booking.user_id', '=', 'users.id')
+            ->select('booking.*', 'users.id as userid','users.name','users.phoneno','users.taxi_number')
+            ->where('booking.driver_id','=',$id)
+            ->get();
+        // dd($users);
+       
+
+        return response()->json([
+            'success' => true,
+            'data' => $users
+        ], 200);
     }
 }

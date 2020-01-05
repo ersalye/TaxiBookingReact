@@ -48,15 +48,13 @@ export default class Navigation extends React.Component {
                   Home
                 </Link>
               </li>
-              <li className={usersClass}>
+              {/* <li className={usersClass}>
                 <Link to="/users" onClick={this.toggleCollapse}>
                   Add Taxi Driver
                 </Link>
-              </li>
+              </li> */}
               <li className={articlesClass}>
-                <Link to="/articles" onClick={this.toggleCollapse}>
-                  Articles
-                </Link>
+                <Link to="/articles" onClick={this.toggleCollapse}></Link>
               </li>
             </ul>
           </div>

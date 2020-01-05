@@ -16,6 +16,9 @@ class CreateTaxiDriversTable extends Migration
         Schema::create('taxi_drivers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('driver_name', 100);
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('phoneno', 100);
             $table->string('license_number', 100);
             $table->string('taxi_number', 100);
             $table->double('latitude', 9, 6);

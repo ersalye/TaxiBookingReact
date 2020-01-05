@@ -59,7 +59,7 @@ class Home extends Component {
   getPreviousRides() {
     axios({
       method: "GET",
-      url: `${process.env.API_URL}api/booking/${this.props.location.state.userid}`,
+      url: `${process.env.API_URL}api/driverbooking/${this.props.location.state.userid}`,
       headers: {
         "content-type": "application/json",
         Accept: "application/json"
@@ -109,7 +109,7 @@ class Home extends Component {
           position.coords.longitude
         );
         console.log(this.marker1.leafletElement, "maprefs");
-        var currentLocationMarker = L.marker(latlng, { icon: icon }).addTo(
+        var currentLocationMarker = L.marker(latlng, { icon: taxiIcon }).addTo(
           this.marker1.leafletElement
         );
         console.log(latlng, "current");
@@ -347,9 +347,6 @@ class Home extends Component {
       autoClose: 3000,
       position: "bottom-right"
     });
-  getTaxi = () => {
-    this.getTaxiDrivers();
-  };
 
   calculateDistance(origLat, origLon, markerLat, markerLon) {
     return geolib.getDistance(
@@ -411,7 +408,6 @@ class Home extends Component {
         animatedMarker.bindPopup(popupContent).openPopup();
       }
     });
-    this.getPreviousRides();
     if ((this.props.location.state.user_type = 1)) {
       axios({
         method: "POST",
@@ -539,12 +535,6 @@ class Home extends Component {
           animate={true}
           style={{ height: height, zIndex: 2 }}
         >
-          <div id="button-wrapper">
-            <button className="btn btn-warning" onClick={this.getTaxi}>
-              Get Nearest Taxi
-            </button>
-          </div>
-
           <div class="card custom-card" style={{ width: "18rem" }}>
             <h4>
               <b>Previous Bookings</b>
@@ -554,10 +544,11 @@ class Home extends Component {
                 return (
                   <div class="card-body custom-top">
                     <h5 class="card-title">
-                      Customer Name: <b>{booking.name}</b>
+                      DriverName: <b>{booking.name}</b>
                     </h5>
                     <p class="card-text">
-                      This Customer Had Booked Taxi On {booking.created_at}
+                      This Taxi Was Booked On {booking.created_at} by You which
+                      taxi number is {booking.taxi_number},Phone Number is{" "}
                       {booking.phone_number}
                     </p>
                   </div>
