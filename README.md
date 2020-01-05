@@ -1,78 +1,80 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Taxi Booking App
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+[![Build Status](https://travis-ci.com/jeremykenedy/laravel-react-tasks.svg?branch=master)](https://travis-ci.com/jeremykenedy/laravel-react-tasks)
+[![StyleCI](https://github.styleci.io/repos/151041710/shield?branch=master)](https://github.styleci.io/repos/151041710)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/jeremykenedy/laravel-react-tasks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/jeremykenedy/laravel-react-tasks/?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## About Laravel
+#### Table of contents
+- [About](#about)
+- [Features](#features)
+- [Installation Instructions](#installation-instructions)
+- [Routes](#routes)
+- [File Tree](#file-tree)
+- [License](#license)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### About
+Simple Taxi Booking App Created using Laravel 5.8 API routes and ReactJS UI with Different Plugin/Packages.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Features
+| Laravel React Tasks Features |
+| :------------ |
+|Built on [Laravel](http://laravel.com/) 5.7|
+|Built on [Bootstrap](https://getbootstrap.com/) 4|
+|Front End Built on [ReactJS](https://reactjs.org/)|
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+   ## Taxi Takes The Current Position of Yours and Users also Takes the Current Position so You Might Not See Much Difference So I Recommend To Import The .sql Data into your database.
+    
+### Installation Instructions
+1. Run `git clone https://github.com/varun2948/TaxiBookingReact.git taxi Booking App`
+2. From the projects root run `cp .env.example .env`
+3. Run `composer install` from the projects root folder
+4. From the projects root folder run `php artisan key:generate`
+5. From the projects root folder run `npm install`
+6. From the projects root folder run `npm start` 
+7. Create a Database in MYSQL DB name it whatever u want i am naming it `taxi_app`
+8. Now put the database name into `.env` file in the root folder at `DB_DATABASE`.
+9. Provide Your Database USERNAME AND PASSWORD in the .env file `DB_USERNAME` and `DB_PASSWORD`.
+10. Now Run `php artisan migrate` in the terminal of the root folder.
+11. Finally Now From the projects root folder run `php artisan serve`.
+12. Now First Signup with Taxi Driver To Get Taxi Driver Around Your Locality when logging as user.
+13. Then Sign Up and Signin as User where u can see taxis 
+12. You Can import Database for easy access and smooth running of the app from database_file in root folder to mysql database.
 
-## Learning Laravel
+## If You Import my .sql database you can user login as `fusemachine@gmail.com` with password : `123456789`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Routes
 
-## Laravel Sponsors
+```
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+------------+
+| Domain | Method   | URI                    | Name             | Action                                                                 | Middleware |
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+------------+
+|        | GET|HEAD | /                      |                  | Closure                                                                | web        |
+|        | POST     | api/booking            |                  | App\Http\Controllers\ApiController@booking                             | api        |
+|        | GET|HEAD | api/booking/{id}       |                  | App\Http\Controllers\ApiController@getbooking                          | api        |
+|        | GET|HEAD | api/driverbooking/{id} |                  | App\Http\Controllers\ApiController@getdriverbooking                    | api        |
+|        | POST     | api/driverregister     |                  | App\Http\Controllers\ApiController@registerdriver                      | api        |
+|        | POST     | api/login              |                  | App\Http\Controllers\ApiController@login                               | api        |
+|        | POST     | api/register           |                  | App\Http\Controllers\ApiController@register                            | api        |
+|        | POST     | api/taxidriver         |                  | App\Http\Controllers\ApiController@addtaxidriver                       | api        |
+|        | GET|HEAD | api/taxidriver         |                  | App\Http\Controllers\ApiController@taxidriverlist                      | api        |
+|        | DELETE   | api/taxidriver/{id}    |                  | App\Http\Controllers\ApiController@deletetaxidriver                    | api        |
+|        | GET|HEAD | api/taxidriver/{id}    |                  | App\Http\Controllers\ApiController@taxidriverdetail                    | api        |
+|        | GET|HEAD | home                   | home             | App\Http\Controllers\HomeController@index                              | web,auth   |
+|        | GET|HEAD | login                  | login            | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest  |
+|        | POST     | login                  |                  | App\Http\Controllers\Auth\LoginController@login                        | web,guest  |
+|        | POST     | logout                 | logout           | App\Http\Controllers\Auth\LoginController@logout                       | web        |
+|        | POST     | password/email         | password.email   | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web        |
+|        | GET|HEAD | password/reset         | password.request | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web        |
+|        | POST     | password/reset         | password.update  | App\Http\Controllers\Auth\ResetPasswordController@reset                | web        |
+|        | GET|HEAD | password/reset/{token} | password.reset   | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web        |
+|        | GET|HEAD | register               | register         | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest  |
+|        | POST     | register               |                  | App\Http\Controllers\Auth\RegisterController@register                  | web,guest  |
++--------+----------+------------------------+------------------+------------------------------------------------------------------------+------------+
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### License
+Laravel React Taxi Booking App is licensed under the [MIT license](https://opensource.org/licenses/MIT). Enjoy!
