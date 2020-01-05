@@ -1,6 +1,6 @@
 ## Taxi Booking App
 
-##Video Demo For This App is in this Link : https://github.com/varun2948/TaxiBookingReact/blob/master/Demo_Video/TaxiApp.mp4
+## Video Demo For This App is in this Link : https://github.com/varun2948/TaxiBookingReact/blob/master/Demo_Video/TaxiApp.mp4
 
 
 [![Build Status](https://travis-ci.com/jeremykenedy/laravel-react-tasks.svg?branch=master)](https://travis-ci.com/jeremykenedy/laravel-react-tasks)
