@@ -32,7 +32,7 @@ Simple Taxi Booking App Created using Laravel 5.8 API routes and ReactJS UI with
 4. From the projects root folder run `php artisan key:generate`
 5. From the projects root folder run `npm install`
 6. From the projects root folder run `npm start` 
-7. Create a Database in MYSQL DB name it whatever u want i am naming it `taxiBooking`
+7. Create a Database in MYSQL DB name it whatever u want i am naming it `taxi_app`
 8. Now put the database name into `.env` file in the root folder at `DB_DATABASE`.
 9. Provide Your Database USERNAME AND PASSWORD in the .env file `DB_USERNAME` and `DB_PASSWORD`.
 10. Now Run `php artisan migrate` in the terminal of the root folder.
