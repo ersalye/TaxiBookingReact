@@ -41,6 +41,7 @@ Simple Taxi Booking App Created using Laravel 5.8 API routes and ReactJS UI with
 13. Then Sign Up and Signin as User where u can see taxis 
 12. You Can import Database for easy access and smooth running of the app from database_file in root folder to mysql database.
 
+##If You Import my .sql database you can user login as `fusemachine@gmail.com` with password : `123456789`
 
 
 ### Routes
