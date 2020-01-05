@@ -23,7 +23,7 @@ Simple Taxi Booking App Created using Laravel 5.8 API routes and ReactJS UI with
 |Built on [Bootstrap](https://getbootstrap.com/) 4|
 |Front End Built on [ReactJS](https://reactjs.org/)|
 
-   ### Taxi Takes The Current Position of Yours and Users also Takes the Current Position so You Might Not See Much Difference So I Recommend To Import The .sql Data into your database.
+   ## Taxi Takes The Current Position of Yours and Users also Takes the Current Position so You Might Not See Much Difference So I Recommend To Import The .sql Data into your database.
     
 ### Installation Instructions
 1. Run `git clone https://github.com/varun2948/TaxiBookingReact.git taxi Booking App`
@@ -41,7 +41,7 @@ Simple Taxi Booking App Created using Laravel 5.8 API routes and ReactJS UI with
 13. Then Sign Up and Signin as User where u can see taxis 
 12. You Can import Database for easy access and smooth running of the app from database_file in root folder to mysql database.
 
-##If You Import my .sql database you can user login as `fusemachine@gmail.com` with password : `123456789`
+## If You Import my .sql database you can user login as `fusemachine@gmail.com` with password : `123456789`
 
 
 ### Routes
